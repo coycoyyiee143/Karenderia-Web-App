@@ -1,29 +1,111 @@
-const menuItems = [
-  { name: "Chicken Adobo", category: "chicken", price: 120 },
-  { name: "Chicken Tinola", category: "chicken", price: 110 },
-  { name: "Pork Sisig", category: "pork", price: 150 },
-  { name: "Pork Adobo", category: "pork", price: 130 },
-  { name: "Beef Caldereta", category: "beef", price: 160 },
-  { name: "Leche Flan", category: "dessert", price: 80 }
+// =======================
+// FOOD DATABASE
+// =======================
+const foods = [
+  {
+    name: "Chicken Adobo",
+    price: 150,
+    description: "Classic soy-vinegar braised chicken",
+    image: "../assets/chicken-adobo.webp",
+    category: "chicken"
+  },
+  {
+    name: "Sinigang na Baboy",
+    price: 180,
+    description: "Sour tamarind soup with pork",
+    image: "../assets/pork-sinigang.webp",
+    category: "pork"
+  },
+  {
+    name: "Kare-Kare",
+    price: 220,
+    description: "Beef tripe with peanut sauce",
+    image: "../assets/kare-kare.webp",
+    category: "beef"
+  },
+  {
+    name: "Lechon Paksiw",
+    price: 170,
+    description: "Roasted pork in rich liver sauce",
+    image: "../assets/letchon-paksiw.webp",
+    category: "pork"
+  },
+  {
+    name: "Chopsuey",
+    price: 120,
+    description: "Mixed vegetables stir-fry",
+    image: "../assets/chopsuey.webp",
+    category: "beef"
+  },
+  {
+    name: "Chicken Inasal",
+    price: 150,
+    description: "Grilled chicken marinated in annatto and spices",
+    image: "../assets/chicken-inasal.webp",
+    category: "chicken"
+  },
+  {
+    name: "Halo-Halo",
+    price: 85,
+    description: "Famous Filipino dessert",
+    image: "../assets/halo-halo.webp",
+    category: "dessert"
+  },
+  {
+    name: "Leche Flan",
+    price: 70,
+    description: "Creamy caramel custard dessert",
+    image: "../assets/letche-flan.webp",
+    category: "dessert"
+  },
+  {
+    name: "Bibingka",
+    price: 60,
+    description: "Traditional rice cake with salted egg and cheese",
+    image: "../assets/bibingka.webp",
+    category: "dessert"
+  }
 ];
-
-let orderCount = 0;
-let totalSales = 0;
 
 const menuList = document.getElementById("menu-list");
 
-function displayMenu(items) {
+// =======================
+// DAILY SALES SETUP
+// =======================
+const today = new Date().toLocaleDateString();
+const salesKey = `dailySales_${today}`;
+
+let dailySales = Number(localStorage.getItem(salesKey)) || 0;
+
+const dailySalesElement = document.getElementById("dailySales");
+if (dailySalesElement) {
+  dailySalesElement.textContent = dailySales.toFixed(2);
+}
+
+// =======================
+// RENDER FOODS
+// =======================
+function displayFoods(foodArray) {
   menuList.innerHTML = "";
 
-  items.forEach(item => {
+  if (foodArray.length === 0) {
+    menuList.innerHTML = "<p class='text-center'>No food found.</p>";
+    return;
+  }
+
+  foodArray.forEach(food => {
     menuList.innerHTML += `
-      <div class="col-md-4 mb-3">
-        <div class="card h-100 shadow-sm">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="${food.image}" class="card-img-top" alt="${food.name}">
           <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
-            <p class="card-text text-muted">₱${item.price}</p>
-            <button class="btn btn-warning w-100" onclick="addOrder(${item.price})">
-              Order
+            <h5 class="card-title">${food.name}</h5>
+            <p class="card-text text-muted">${food.description}</p>
+            <p class="fw-bold">₱${food.price}.00</p>
+            <button 
+              class="btn btn-warning w-100"
+              onclick="addToTray(${food.price})">
+              Add to Tray
             </button>
           </div>
         </div>
@@ -32,30 +114,50 @@ function displayMenu(items) {
   });
 }
 
-function filterMenu(category) {
-  if (category === "all") {
-    displayMenu(menuItems);
-  } else {
-    const filtered = menuItems.filter(item => item.category === category);
-    displayMenu(filtered);
+// =======================
+// ADD TO TRAY → ADD TO DAILY SALES
+// =======================
+function addToTray(price) {
+  dailySales += price;
+  localStorage.setItem(salesKey, dailySales);
+
+  if (dailySalesElement) {
+    dailySalesElement.textContent = dailySales.toFixed(2);
   }
 }
 
+// =======================
+// FILTER BY CATEGORY
+// =======================
+function filterMenu(category) {
+  document.getElementById("searchInput").value = "";
+
+  if (category === "all") {
+    displayFoods(foods);
+    return;
+  }
+
+  const filteredFoods = foods.filter(food => food.category === category);
+  displayFoods(filteredFoods);
+}
+
+// =======================
+// SEARCH BY NAME
+// =======================
 function searchMenu() {
-  const keyword = document.getElementById("searchInput").value.toLowerCase();
-  const result = menuItems.filter(item =>
-    item.name.toLowerCase().includes(keyword)
+  const searchValue = document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase(); 
+
+  const searchedFoods = foods.filter(food =>
+    food.name.toLowerCase().includes(searchValue)
   );
-  displayMenu(result);
+
+  displayFoods(searchedFoods);
 }
 
-function addOrder(price) {
-  orderCount++;
-  totalSales += price;
-
-  document.getElementById("orderCount").textContent = orderCount;
-  document.getElementById("totalSales").textContent = totalSales.toFixed(2);
-}
-
-// Load all items on start
-displayMenu(menuItems);
+// =======================
+// INITIAL LOAD
+// =======================
+displayFoods(foods);
