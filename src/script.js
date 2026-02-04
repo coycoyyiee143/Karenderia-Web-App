@@ -1,3 +1,6 @@
+// =======================
+// FOOD DATABASE
+// =======================
 // Food database
 const foods = [
   {
@@ -40,6 +43,7 @@ const foods = [
     price: 150,
     description: "Grilled chicken marinated in annatto and spices",
     image: "../assets/chicken-inasal.webp",
+    category: "chicken"
     category: "beef"
   },
   {
@@ -67,6 +71,22 @@ const foods = [
 
 const menuList = document.getElementById("menu-list");
 
+// =======================
+// DAILY SALES SETUP
+// =======================
+const today = new Date().toLocaleDateString();
+const salesKey = `dailySales_${today}`;
+
+let dailySales = Number(localStorage.getItem(salesKey)) || 0;
+
+const dailySalesElement = document.getElementById("dailySales");
+if (dailySalesElement) {
+  dailySalesElement.textContent = dailySales.toFixed(2);
+}
+
+// =======================
+// RENDER FOODS
+// =======================
 // Render foods
 function displayFoods(foodArray) {
   menuList.innerHTML = "";
@@ -85,6 +105,11 @@ function displayFoods(foodArray) {
             <h5 class="card-title">${food.name}</h5>
             <p class="card-text text-muted">${food.description}</p>
             <p class="fw-bold">₱${food.price}.00</p>
+            <button 
+              class="btn btn-warning w-100"
+              onclick="addToTray(${food.price})">
+              Add to Tray
+            </button>
             <button class="btn btn-warning w-100">Add to Tray</button>
           </div>
         </div>
@@ -93,6 +118,21 @@ function displayFoods(foodArray) {
   });
 }
 
+// =======================
+// ADD TO TRAY → ADD TO DAILY SALES
+// =======================
+function addToTray(price) {
+  dailySales += price;
+  localStorage.setItem(salesKey, dailySales);
+
+  if (dailySalesElement) {
+    dailySalesElement.textContent = dailySales.toFixed(2);
+  }
+}
+
+// =======================
+// FILTER BY CATEGORY
+// =======================
 // Load all foods on page load
 displayFoods(foods);
 
@@ -109,6 +149,9 @@ function filterMenu(category) {
   displayFoods(filteredFoods);
 }
 
+// =======================
+// SEARCH BY NAME
+// =======================
 // Search by names
 function searchMenu() {
   const searchValue = document
@@ -122,3 +165,8 @@ function searchMenu() {
 
   displayFoods(searchedFoods);
 }
+
+// =======================
+// INITIAL LOAD
+// =======================
+displayFoods(foods);
