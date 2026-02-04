@@ -4,63 +4,63 @@ const foods = [
     name: "Chicken Adobo",
     price: 150,
     description: "Classic soy-vinegar braised chicken",
-    image: "./assets/chicken-adobo.webp",
+    image: "../assets/chicken-adobo.webp",
     category: "chicken"
   },
   {
     name: "Sinigang na Baboy",
     price: 180,
     description: "Sour tamarind soup with pork",
-    image: "./assets/pork-sinigang.webp",
+    image: "../assets/pork-sinigang.webp",
     category: "pork"
   },
   {
     name: "Kare-Kare",
     price: 220,
     description: "Beef tripe with peanut sauce",
-    image: "./assets/kare-kare.webp",
+    image: "../assets/kare-kare.webp",
     category: "beef"
   },
   {
     name: "Lechon Paksiw",
     price: 170,
     description: "Roasted pork in rich liver sauce",
-    image: "./assets/letchon-paksiw.webp",
+    image: "../assets/letchon-paksiw.webp",
     category: "pork"
   },
   {
     name: "Chopsuey",
     price: 120,
     description: "Mixed vegetables stir-fry",
-    image: "./assets/chopsuey.webp",
+    image: "../assets/chopsuey.webp",
     category: "beef"
   },
   {
     name: "Chicken Inasal",
     price: 150,
     description: "Grilled chicken marinated in annatto and spices",
-    image: "./assets/chicken-inasal.webp",
+    image: "../assets/chicken-inasal.webp",
     category: "beef"
   },
   {
     name: "Halo-Halo",
     price: 85,
     description: "Famous Filipino dessert",
-    image: "./assets/halo-halo.webp",
+    image: "../assets/halo-halo.webp",
     category: "dessert"
   },
   {
     name: "Leche Flan",
     price: 70,
     description: "Creamy caramel custard dessert",
-    image: "./assets/letche-flan.webp",
+    image: "../assets/letche-flan.webp",
     category: "dessert"
   },
   {
     name: "Bibingka",
     price: 60,
     description: "Traditional rice cake with salted egg and cheese",
-    image: "./assets/bibingka.webp",
+    image: "../assets/bibingka.webp",
     category: "dessert"
   }
 ];
