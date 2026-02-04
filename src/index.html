@@ -1,55 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Karenderia Menu</title>
 
   <!-- Bootstrap -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Optional custom CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-light bg-white shadow-sm px-4">
-  <span class="navbar-brand fw-bold text-warning">🍽 Karenderia</span>
-  <a href="OrderManagement.html" class="text-decoration-none text-dark">
-    Orders
-  </a>
+  <a class="navbar-brand fw-bold text-warning">🍽 Karenderia</a>
+  <a href="OrderManagement.html" class="text-decoration-none text-dark">Orders</a>
 </nav>
 
-<!-- MAIN CONTENT -->
 <div class="container my-4">
-
-  <!-- TITLE -->
   <h2 class="fw-bold">Our Traditional Menu</h2>
   <p class="text-muted">Freshly prepared Filipino favorites</p>
 
   <!-- FILTERS + SEARCH -->
-  <div class="row mb-3 align-items-center">
+  <div class="row mb-3">
     <div class="col-md-6 mb-2">
-      <button class="btn btn-outline-dark me-1" onclick="filterMenu('chicken')">Chicken</button>
-      <button class="btn btn-outline-dark me-1" onclick="filterMenu('pork')">Pork</button>
-      <button class="btn btn-outline-dark me-1" onclick="filterMenu('beef')">Beef</button>
-      <button class="btn btn-outline-dark me-1" onclick="filterMenu('dessert')">Dessert</button>
+      <button class="btn btn-outline-dark me-2" onclick="filterMenu('chicken')">Chicken</button>
+      <button class="btn btn-outline-dark me-2" onclick="filterMenu('pork')">Pork</button>
+      <button class="btn btn-outline-dark me-2" onclick="filterMenu('beef')">Beef</button>
+      <button class="btn btn-outline-dark me-2" onclick="filterMenu('dessert')">Dessert</button>
       <button class="btn btn-dark" onclick="filterMenu('all')">All</button>
     </div>
 
     <div class="col-md-6">
       <div class="input-group">
-        <input
-          type="text"
-          id="searchInput"
-          class="form-control"
-          placeholder="Search food..."
-        />
+        <input type="text" id="searchInput" class="form-control" placeholder="Search food...">
         <button class="btn btn-dark" onclick="searchMenu()">Search</button>
       </div>
     </div>
@@ -74,12 +61,12 @@
 
   <!-- MENU LIST -->
   <div class="row" id="menu-list">
-    <!-- Cards injected by script.js -->
+    <!-- Food cards rendered by script.js -->
   </div>
-
 </div>
 
 <!-- SCRIPT -->
 <script src="script.js"></script>
+
 </body>
 </html>
