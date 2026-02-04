@@ -1,0 +1,21 @@
+
+body {
+    background-color: #faf7f4;
+  }
+  
+  .card {
+    border-radius: 15px;
+  }
+  
+  .card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .price {
+    color: #f57c00;
+    font-weight: bold;
+  }
+  
