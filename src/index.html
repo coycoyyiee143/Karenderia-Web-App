@@ -8,15 +8,17 @@
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-light bg-white shadow-sm px-4">
   <a class="navbar-brand fw-bold text-warning">🍽 Karenderia</a>
+  <a href="OrderManagement.html" class="text-dark text-decoration-none">Orders</a>
 </nav>
 
 <div class="container my-4">
   <h2 class="fw-bold">Our Traditional Menu</h2>
   <p class="text-muted">Freshly prepared Filipino favorites</p>
 
-  <!-- Filters -->
+  <!-- FILTERS -->
   <div class="row mb-3">
     <div class="col-md-6 mb-2">
       <button class="btn btn-outline-dark me-2" onclick="filterMenu('chicken')">Chicken</button>
@@ -26,7 +28,7 @@
       <button class="btn btn-dark" onclick="filterMenu('all')">All</button>
     </div>
 
-    <!-- Search -->
+    <!-- SEARCH -->
     <div class="col-md-6">
       <div class="input-group">
         <input type="text" id="searchInput" class="form-control" placeholder="Search food...">
@@ -35,25 +37,24 @@
     </div>
   </div>
 
-  <!-- Daily Sales Summary -->
+  <!-- DAILY SALES -->
   <div class="row mb-4">
-    <div class="col-md-12">
+    <div class="col-12">
       <div class="card shadow-sm">
         <div class="card-body d-flex justify-content-between align-items-center">
           <div>
-            <h5 class="fw-bold mb-1">📊 Daily Sales Summary</h5>
-            <p class="mb-0 text-muted">Today’s performance</p>
+            <h5 class="fw-bold mb-1">📊 Daily Sales</h5>
+            <p class="text-muted mb-0">Total sales for today</p>
           </div>
-          <div class="text-end">
-            <h6>Orders: <span id="orderCount">0</span></h6>
-            <h6>Total Sales: ₱<span id="totalSales">0.00</span></h6>
-          </div>
+          <h3 class="fw-bold text-success mb-0">
+            ₱<span id="dailySales">0.00</span>
+          </h3>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Menu -->
+  <!-- MENU LIST -->
   <div class="row" id="menu-list"></div>
 </div>
 
