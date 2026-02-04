@@ -1,7 +1,6 @@
 // =======================
 // FOOD DATABASE
 // =======================
-// Food database
 const foods = [
   {
     name: "Chicken Adobo",
@@ -43,7 +42,6 @@ const foods = [
     price: 150,
     description: "Grilled chicken marinated in annatto and spices",
     image: "../assets/chicken-inasal.webp",
-    category: "chicken"
     category: "beef"
   },
   {
@@ -76,18 +74,16 @@ const menuList = document.getElementById("menu-list");
 // =======================
 const today = new Date().toLocaleDateString();
 const salesKey = `dailySales_${today}`;
-
 let dailySales = Number(localStorage.getItem(salesKey)) || 0;
 
-const dailySalesElement = document.getElementById("dailySales");
-if (dailySalesElement) {
-  dailySalesElement.textContent = dailySales.toFixed(2);
+const dailySalesDisplay = document.getElementById("dailySales");
+if (dailySalesDisplay) {
+  dailySalesDisplay.textContent = dailySales.toFixed(2);
 }
 
 // =======================
 // RENDER FOODS
 // =======================
-// Render foods
 function displayFoods(foodArray) {
   menuList.innerHTML = "";
 
@@ -110,7 +106,6 @@ function displayFoods(foodArray) {
               onclick="addToTray(${food.price})">
               Add to Tray
             </button>
-            <button class="btn btn-warning w-100">Add to Tray</button>
           </div>
         </div>
       </div>
@@ -125,18 +120,19 @@ function addToTray(price) {
   dailySales += price;
   localStorage.setItem(salesKey, dailySales);
 
-  if (dailySalesElement) {
-    dailySalesElement.textContent = dailySales.toFixed(2);
+  if (dailySalesDisplay) {
+    dailySalesDisplay.textContent = dailySales.toFixed(2);
   }
 }
 
 // =======================
-// FILTER BY CATEGORY
+// LOAD ALL FOODS
 // =======================
-// Load all foods on page load
 displayFoods(foods);
 
-// Filter by category
+// =======================
+// FILTER BY CATEGORY
+// =======================
 function filterMenu(category) {
   document.getElementById("searchInput").value = "";
 
@@ -152,7 +148,6 @@ function filterMenu(category) {
 // =======================
 // SEARCH BY NAME
 // =======================
-// Search by names
 function searchMenu() {
   const searchValue = document
     .getElementById("searchInput")
@@ -165,8 +160,3 @@ function searchMenu() {
 
   displayFoods(searchedFoods);
 }
-
-// =======================
-// INITIAL LOAD
-// =======================
-displayFoods(foods);
