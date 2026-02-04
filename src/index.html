@@ -12,6 +12,15 @@
 <nav class="navbar navbar-light bg-white shadow-sm px-4">
   <a class="navbar-brand fw-bold text-warning">🍽 Karenderia</a>
   <a href="OrderManagement.html" class="text-dark text-decoration-none">Orders</a>
+  <link rel="stylesheet" href="style.css">
+  <title>Karenderia Menu</title>
+ 
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-white shadow-sm px-4">
+  <a class="navbar-brand fw-bold text-warning">🍽 Karenderia</a>
+  <a href="OrderManagement.html">Orders</a>
 </nav>
 
 <div class="container my-4">
@@ -19,6 +28,7 @@
   <p class="text-muted">Freshly prepared Filipino favorites</p>
 
   <!-- FILTERS -->
+  <!-- Filters -->
   <div class="row mb-3">
     <div class="col-md-6 mb-2">
       <button class="btn btn-outline-dark me-2" onclick="filterMenu('chicken')">Chicken</button>
@@ -29,6 +39,7 @@
     </div>
 
     <!-- SEARCH -->
+    <!-- Search -->
     <div class="col-md-6">
       <div class="input-group">
         <input type="text" id="searchInput" class="form-control" placeholder="Search food...">
@@ -56,6 +67,9 @@
 
   <!-- MENU LIST -->
   <div class="row" id="menu-list"></div>
+  <div class="row" id="menu-list">
+    <!-- Food cards -->
+  </div>
 </div>
 
 <script src="script.js"></script>

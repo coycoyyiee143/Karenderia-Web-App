@@ -1,6 +1,7 @@
 // =======================
 // FOOD DATABASE
 // =======================
+// Food database
 const foods = [
   {
     name: "Chicken Adobo",
@@ -43,6 +44,7 @@ const foods = [
     description: "Grilled chicken marinated in annatto and spices",
     image: "../assets/chicken-inasal.webp",
     category: "chicken"
+    category: "beef"
   },
   {
     name: "Halo-Halo",
@@ -85,6 +87,7 @@ if (dailySalesElement) {
 // =======================
 // RENDER FOODS
 // =======================
+// Render foods
 function displayFoods(foodArray) {
   menuList.innerHTML = "";
 
@@ -107,6 +110,7 @@ function displayFoods(foodArray) {
               onclick="addToTray(${food.price})">
               Add to Tray
             </button>
+            <button class="btn btn-warning w-100">Add to Tray</button>
           </div>
         </div>
       </div>
@@ -129,6 +133,10 @@ function addToTray(price) {
 // =======================
 // FILTER BY CATEGORY
 // =======================
+// Load all foods on page load
+displayFoods(foods);
+
+// Filter by category
 function filterMenu(category) {
   document.getElementById("searchInput").value = "";
 
@@ -144,6 +152,7 @@ function filterMenu(category) {
 // =======================
 // SEARCH BY NAME
 // =======================
+// Search by names
 function searchMenu() {
   const searchValue = document
     .getElementById("searchInput")
